@@ -38,7 +38,7 @@ def output_to_likelihood(output, x):
     p_char = p_char.data.cpu().numpy()
     x = x.data.cpu().numpy()
     for i in range(output.size(1)-1):
-        print(np.exp(p_char[0,i,x[0,i]]))
+        #print(np.exp(p_char[0,i,x[0,i]]))
         result+=p_char[0,i,x[0, i]]
     return result
 
