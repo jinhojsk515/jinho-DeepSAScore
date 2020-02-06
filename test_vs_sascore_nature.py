@@ -8,7 +8,7 @@ import random
 import os
 import argparse
 import math
-import model
+import models
 from rdkit import Chem
 from torch.utils.data import DataLoader
 from dataset import MolDataset, my_collate
@@ -55,12 +55,11 @@ with open('data/testing.txt') as f:
     lines = f.readlines()
     lines = [l.strip().split('\t') for l in lines]
     s_to_human_score = {l[1]:l[2] for l in lines}
-    s_to_human_score = {'COc1ccc2cc1-c1c(O)cc(O)c3c(=O)cc(oc13)-c1ccc(O)c(c1)[C@H](C)c1c(O)cc3c(c1O)C(=O)C[C@@H]2O3':1}
 
 if args.model=='Trans':
-    model = model.TransformerModel(args, n_char, i_to_c)
+    model = models.TransformerModel(args, n_char, i_to_c)
 else:
-    model = model.RNN(args, n_char, i_to_c)
+    model = models.RNN(args, n_char, i_to_c)
 
 model = utils.initialize_model(model, device, args.save_files)
 
